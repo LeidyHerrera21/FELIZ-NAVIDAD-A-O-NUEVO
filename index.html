@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Christmas Tree</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- Open Graph / WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="🎄 Tarjeta Navideña Animada ✨">
+<meta property="og:description" content="Cuenta regresiva con luces, nieve y fuegos artificiales. ¡Feliz Navidad y Año Nuevo!">
+<meta property="og:image" content="https://TU_USUARIO.github.io/TU_REPO/preview.jpg">
+<meta property="og:url" content="https://TU_USUARIO.github.io/TU_REPO/">
+<meta property="og:site_name" content="Tarjeta Navideña">
+
+<!-- Twitter (opcional pero recomendado) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🎄 Tarjeta Navideña Animada ✨">
+<meta name="twitter:description" content="Comparte una tarjeta navideña con animaciones y cuenta regresiva">
+<meta name="twitter:image" content="https://TU_USUARIO.github.io/TU_REPO/preview.jpg">
+
+
+<style>
+  body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background: radial-gradient(circle at top, #00131f, #000);
+  perspective: 1200px;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+  /* ÁRBOL */
+  .tree {
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateTree 20s linear infinite;
+    z-index: 2;
+  }
+
+.tree {
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .tree {
+    transform: scale(0.75);
+  }
+}
+
+@media (max-width: 480px) {
+  .tree {
+    transform: scale(0.6);
+  }
+}
+
+
+  @keyframes rotateTree {
+    from { transform: rotateX(30deg) rotateY(0deg); }
+    to   { transform: rotateX(30deg) rotateY(360deg); }
+  }
+
+  .star {
+    position: absolute;
+    opacity: 0;
+    animation:
+      twinkle 1.2s infinite alternate,
+      appear 3s forwards;
+    text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+    user-select: none;
+  }
+
+  @keyframes twinkle {
+    from { opacity: 0.4; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes appear {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .top-star {
+    text-shadow:
+      0 0 10px gold,
+      0 0 25px gold,
+      0 0 40px goldenrod;
+  }
+
+  /* TEXTO FELIZ NAVIDAD */
+  .text {
+  margin-top: 20px;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(32px, 6vw, 52px);
+  letter-spacing: 2px;
+  color: #FFD700;
+  text-align: center;
+  z-index: 3;
+  animation: christmasGlow 4s infinite ease-in-out;
+}
+
+
+ @keyframes christmasGlow {
+  0% {
+    opacity: 0.3;
+    text-shadow:
+      0 0 5px #FFD700,
+      0 0 10px goldenrod;
+  }
+
+  25% {
+    opacity: 1;
+    text-shadow:
+      0 0 12px #FFD700,
+      0 0 25px goldenrod,
+      0 0 40px goldenrod;
+  }
+
+  50% {
+    opacity: 0.6;
+    text-shadow:
+      0 0 8px #FFD700,
+      0 0 16px goldenrod;
+  }
+
+  75% {
+    opacity: 0.15;
+    text-shadow:
+      0 0 2px #FFD700;
+  }
+
+  100% {
+    opacity: 1;
+    text-shadow:
+      0 0 14px #FFD700,
+      0 0 30px goldenrod,
+      0 0 50px goldenrod;
+  }
+}
+
+
+
+  /* NIEVE */
+  .snowflake {
+    position: fixed;
+    top: -10px;
+    color: white;
+    font-size: 10px;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: fall linear forwards;
+    z-index: 5;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(110vh);
+    }
+  }
+
+
+ .countdown-container {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  z-index: 3;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.time-box {
+  width: clamp(60px, 18vw, 80px);
+  padding: 10px 5px;
+  border-radius: 12px;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  text-align: center;
+  box-shadow:
+    0 0 10px rgba(255, 215, 0, 0.4),
+    inset 0 0 10px rgba(255, 215, 0, 0.2);
+  animation: boxGlow 2.5s infinite alternate;
+}
+
+@keyframes boxGlow {
+  from {
+    box-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
+  }
+  to {
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.7);
+  }
+}
+
+.number {
+  display: block;
+   font-size: clamp(20px, 5vw, 26px);
+  font-weight: bold;
+  color: #FFD700;
+  text-shadow: 0 0 10px goldenrod;
+}
+
+.label {
+  font-size: clamp(9px, 2.5vw, 11px);
+  letter-spacing: 1px;
+  color: #FFD700;
+  opacity: 0.8;
+}
+
+/* ===== MODO MÓVIL VERTICAL ===== */
+@media (max-width: 480px) and (orientation: portrait) {
+
+  body {
+    justify-content: space-evenly;
+    padding-top: 20px;
+  }
+
+  .tree {
+    transform: scale(0.55);
+  }
+
+  .text {
+    font-size: 42px;
+    margin-top: 10px;
+  }
+
+  .countdown-container {
+    gap: 10px;
+    max-width: 90%;
+  }
+
+  .time-box {
+    width: 45%;
+  }
+
+}
+
+.share-container {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  z-index: 3;
+}
+
+.share-container button {
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: #FFD700;
+  background: rgba(255, 215, 0, 0.15);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.share-container button:hover {
+  background: rgba(255, 215, 0, 0.35);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+}
+
+
+.floating-player {
+  position: fixed;
+  top: 60px;
+  right: 14px;
+  width: 280px;
+  height: 80px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 20px rgba(255, 215, 0, 0.7),
+    inset 0 0 15px rgba(255, 215, 0, 0.2);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.floating-player iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* MODO MÓVIL */
+@media (max-width: 480px) {
+  .floating-player {
+    top: auto;
+    bottom: 14px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 92%;
+  }
+}
+
+
+#currentDate {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFD700;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 12px;
+  border-radius: 18px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  z-index: 10000;
+}
+
+
+#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ===== TEMA AÑO NUEVO ===== */
+body.new-year {
+  background: radial-gradient(circle at top, #0a0020, #000);
+}
+
+body.new-year .text {
+  color: #00eaff;
+  text-shadow:
+    0 0 10px #00eaff,
+    0 0 25px #7cfaff,
+    0 0 45px #ffffff;
+}
+
+body.new-year .time-box {
+  border-color: rgba(0, 234, 255, 0.6);
+  box-shadow:
+    0 0 12px rgba(0, 234, 255, 0.6),
+    inset 0 0 10px rgba(0, 234, 255, 0.3);
+}
+
+body.new-year .number,
+body.new-year .label {
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div id="currentDate"></div>
+
+<div class="floating-player">
+  <iframe
+    id="spotifyPlayer"
+    src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0Yxoavh5qJV"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+  </iframe>
+</div>
+
+
+
+
+<div class="tree" id="tree"></div>
+<div class="text">Feliz Navidad</div>
+<div class="countdown-container" id="countdown">
+  <div class="time-box">
+  <span class="number" id="days">0</span>
+  <span class="label" id="days-label">DÍAS</span>
+</div>
+
+  <div class="time-box">
+    <span class="number" id="hours">00</span>
+    <span class="label">HORAS</span>
+  </div>
+  <div class="time-box">
+    <span class="number" id="minutes">00</span>
+    <span class="label">MIN</span>
+  </div>
+  <div class="time-box">
+    <span class="number" id="seconds">00</span>
+    <span class="label">SEG</span>
+  </div>
+</div>
+
+<div class="share-container">
+  <button id="shareNative">📤 Compartir</button>
+  <button id="shareWhatsapp">💬 WhatsApp</button>
+</div>
+
+
+
+<script>
+/* ========= CONFIG ========= */
+const shareText = "🎄✨ Te comparto esta tarjeta navideña ✨🎄";
+
+/* ========= ÁRBOL ========= */
+function getRandomColor() {
+  const colors = ['#ff4040', '#ffd700', '#00eaff', '#ff6ec7', '#7CFF00'];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function createTree() {
+  const tree = document.getElementById('tree');
+  const layers = 12;
+  let delay = 0;
+
+  for (let i = 0; i < layers; i++) {
+    const starsPerLayer = (layers - i) * 12;
+    const radius = (layers - i) * 14;
+    const height = i * 18;
+
+    for (let j = 0; j < starsPerLayer; j++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+
+      const angle = (j / starsPerLayer) * Math.PI * 2;
+      const x = Math.cos(angle) * radius;
+      const z = Math.sin(angle) * radius;
+
+      star.textContent = '✦';
+      star.style.color = getRandomColor();
+      star.style.left = `${x}px`;
+      star.style.bottom = `${height}px`;
+      star.style.transform = `translateZ(${z}px)`;
+      star.style.fontSize = `${10 + i}px`;
+      star.style.animationDelay = `${delay}s, ${delay + 0.5}s`;
+
+      tree.appendChild(star);
+      delay += 0.03;
+    }
+  }
+
+  const topStar = document.createElement('div');
+  topStar.className = 'star top-star';
+  topStar.textContent = '★';
+  topStar.style.color = '#FFD700';
+  topStar.style.fontSize = '48px';
+  topStar.style.left = '-14px';
+  topStar.style.bottom = `${layers * 18}px`;
+
+  tree.appendChild(topStar);
+}
+
+/* ========= CONTADOR NAVIDAD ========= */
+function startChristmasCountdown() {
+  const now = new Date();
+  const year = now.getFullYear();
+
+  const christmas = new Date(year, 11, 25, 0, 0, 0);
+  const newYear = new Date(year + 1, 0, 1, 0, 0, 0);
+
+  let targetDate;
+  let finalMessage;
+
+  if (now < christmas) {
+    targetDate = christmas;
+    finalMessage = `🎄 ¡Feliz Navidad ${year}! 🎄`;
+  } else {
+    targetDate = newYear;
+    finalMessage = `🎆 ¡Feliz Año Nuevo ${year + 1}! 🎆`;
+  }
+
+  const daysEl = document.getElementById('days');
+  const hoursEl = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
+  const container = document.getElementById('countdown');
+  const titleText = document.querySelector('.text');
+
+  if (now >= christmas) {
+    titleText.textContent = "Cuenta regresiva para Año Nuevo";
+  }
+
+  const interval = setInterval(() => {
+    const distance = targetDate - new Date();
+
+    if (distance <= 0) {
+  clearInterval(interval);
+
+  document.body.classList.add("new-year");
+  document.querySelector(".text").textContent = "Feliz Año Nuevo";
+
+  container.innerHTML = `
+    <div style="
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      color: #00eaff;
+      text-shadow: 0 0 25px #00eaff, 0 0 60px white;
+      animation: christmasGlow 3s infinite;
+      text-align: center;
+    ">
+      🎆 ¡Feliz Año Nuevo ${year + 1}! 🎆
+    </div>
+  `;
+
+  launchFireworks();
+  switchToNewYearPlaylist();
+
+  return;
+}
+
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    daysEl.textContent = days;
+    document.getElementById('days-label').textContent =
+      days === 1 ? 'DÍA' : 'DÍAS';
+
+    hoursEl.textContent = String(hours).padStart(2, '0');
+    minutesEl.textContent = String(minutes).padStart(2, '0');
+    secondsEl.textContent = String(seconds).padStart(2, '0');
+  }, 1000);
+}
+
+startChristmasCountdown();
+
+/* ========= FUEGOS ARTIFICIALES ========= */
+function launchFireworks() {
+  const canvas = document.getElementById("fireworks");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  let particles = [];
+
+  function random(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  function createFirework(x, y) {
+    const colors = ["#ff0000", "#ffd700", "#00ffcc", "#ffffff", "#ff66cc"];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x, y,
+        angle: random(0, Math.PI * 2),
+        speed: random(2, 7),
+        life: 100,
+        color
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles = particles.filter(p => p.life-- > 0);
+
+    particles.forEach(p => {
+      p.x += Math.cos(p.angle) * p.speed;
+      p.y += Math.sin(p.angle) * p.speed;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+  const fw = setInterval(() => {
+    createFirework(random(100, canvas.width-100), random(100, canvas.height-200));
+  }, 600);
+
+  setTimeout(() => clearInterval(fw), 8000);
+}
+
+/* ========= NIEVE ========= */
+function createSnow() {
+  const snow = document.createElement('div');
+  snow.className = 'snowflake';
+  snow.textContent = '❄';
+  snow.style.left = Math.random() * window.innerWidth + 'px';
+  snow.style.fontSize = Math.random() * 10 + 8 + 'px';
+  snow.style.animationDuration = Math.random() * 4 + 6 + 's';
+  document.body.appendChild(snow);
+  setTimeout(() => snow.remove(), 10000);
+}
+
+/* ========= COMPARTIR ========= */
+document.getElementById("shareNative").onclick = async () => {
+  if (navigator.share) {
+    await navigator.share({
+      title: "Feliz Navidad 🎄",
+      text: shareText,
+      url: window.location.href
+    });
+  }
+};
+
+document.getElementById("shareWhatsapp").onclick = () => {
+  const msg = encodeURIComponent(shareText + "\n\n" + window.location.href);
+  window.open(`https://wa.me/?text=${msg}`, "_blank");
+};
+
+/* ========= INICIO ========= */
+createTree();
+startChristmasCountdown();
+setInterval(createSnow, 200);
+
+function switchToNewYearPlaylist() {
+  const spotify = document.getElementById("spotifyPlayer");
+
+  spotify.src =
+    "https://open.spotify.com/embed/playlist/37i9dQZF1DX4dyzvuaRJ0n";
+
+  spotify.style.boxShadow =
+    "0 0 25px rgba(0,234,255,0.9)";
+}
+
+function updateDate() {
+  const dateEl = document.getElementById("currentDate");
+  const now = new Date();
+
+  const options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  };
+
+  dateEl.textContent = now.toLocaleDateString("es-ES", options);
+}
+
+updateDate();
+
+</script>
+
+
+
+<canvas id="fireworks"></canvas>
+
+</body>
+</html>
