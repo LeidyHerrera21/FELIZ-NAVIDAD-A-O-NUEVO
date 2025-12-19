@@ -2,7 +2,7 @@
 
 ¡Bienvenido al repositorio de la **Tarjeta Navideña Animada**! Este es un proyecto web interactivo diseñado para celebrar las fiestas con un árbol de Navidad en 3D, efectos de nieve, música y una cuenta regresiva dinámica.
 
-![Vista previa del proyecto](preview.ppg)
+![Vista previa del proyecto](preview.png)
 
 ## 🌟 Características
 
@@ -24,7 +24,7 @@
 ## 🛠️ Instalación y Uso
 
 1.  Clona este repositorio o descarga los archivos.
-2.  Asegúrate de que la imagen `preview.jpg` esté en la misma carpeta que el `index.html`.
+2.  Asegúrate de que la imagen `preview.png` esté en la misma carpeta que el `index.html`.
 3.  Abre el archivo `index.html` en cualquier navegador moderno.
 
 ```bash
